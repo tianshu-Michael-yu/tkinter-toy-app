@@ -15,5 +15,9 @@ width = 400
 height = 300
 center_x, center_y = find_center_coordinate(root, width, height)
 root.geometry(f"{width}x{height}+{center_x}+{center_y}")
+root.minsize(200, 200)
+root.maxsize(600, 600)
+root.attributes("-alpha", 0.8)
+root.attributes("-topmost", True)
 
 root.mainloop()
