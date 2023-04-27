@@ -15,10 +15,12 @@ class App(tk.Tk):
     def create_figure(self, master):
         fig = Figure(figsize=(6, 6))
         figure_canvas = FigureCanvasTkAgg(fig, master=master)
-        ax = fig.add_subplot(111)
+        ax1= fig.add_subplot(211)
+        ax2 = fig.add_subplot(212)
         x = [1, 2, 3, 4, 5]
         y = [3, 5, 2, 6, 2]
-        ax.plot(x, y)
+        ax1.plot(x, y)
+        ax2.plot(x, y)
         figure_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     
     def create_tab(self):
