@@ -14,10 +14,10 @@ class App:
 
     def plot(self, master, x_data, y_data):
         fig = Figure(figsize=(6, 6))
-        ax = fig.add_subplot(111)
-        ax.plot(x_data, y_data)
         figure_canvas = FigureCanvasTkAgg(fig, master=master)
         figure_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        ax = fig.add_subplot(111)
+        ax.plot(x_data, y_data)
 
     def show(self):
         self.root.mainloop()
