@@ -7,7 +7,6 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt 
 from matplotlib.animation import FuncAnimation
 import numpy as np 
-plt.style.use('dark_background')
 
 matplotlib.use('TkAgg')
 
@@ -25,7 +24,7 @@ class App:
     def animate(self):
         fig = self.create_figure()
         ax = fig.add_subplot(xlim=(0, 4), ylim=(-2, 2))
-        line, = ax.plot([], [], lw=3)
+        line, = ax.plot([], [], 'bo',lw=3)
         sin = Sine(line)
         self.start_animation(fig, sin.init, sin.animate)
 
@@ -49,7 +48,7 @@ class Sine:
         self.line = line
     
     def animate(self, i):
-        x = np.linspace(0, 4, 1000)
+        x = np.linspace(0, 4, 100)
         y = np.sin(2 * np.pi * (x - 0.01 * i))
         self.line.set_data(x, y)
         return self.line,
