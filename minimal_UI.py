@@ -26,22 +26,13 @@ class App:
         fig = self.create_figure()
         ax = fig.add_subplot(xlim=(0, 4), ylim=(-2, 2))
         line, = ax.plot([], [], lw=3)
+        sin = Sine(line)
+        self.start_animation(fig, sin.init, sin.animate)
 
-        def init():
-            line.set_data([], [])
-            return line,
-        def animate(i):
-            x = np.linspace(0, 4, 1000)
-            y = np.sin(2 * np.pi * (x - 0.01 * i))
-            line.set_data(x, y)
-            return line,
-
+    def start_animation(self, fig, init, animate):
         anim = FuncAnimation(fig, animate, init_func=init,
                                     frames=200, interval=20, blit=True)
         self.figure_canvas.draw()
-
-                    
-
 
     def create_figure(self):
         fig = Figure(figsize=(6, 6))
@@ -53,6 +44,19 @@ class App:
     def show(self):
         self.root.mainloop()
 
+class Sine:
+    def __init__(self, line: matplotlib.lines.Line2D) -> None:
+        self.line = line
+    
+    def animate(self, i):
+        x = np.linspace(0, 4, 1000)
+        y = np.sin(2 * np.pi * (x - 0.01 * i))
+        self.line.set_data(x, y)
+        return self.line,
+
+    def init(self):
+        self.line.set_data([], [])
+        return self.line,
 
 if __name__ == "__main__":
     app = App()
