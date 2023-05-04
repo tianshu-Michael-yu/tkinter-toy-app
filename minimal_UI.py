@@ -36,7 +36,8 @@ class App:
     def create_figure(self):
         fig = Figure(figsize=(6, 6))
         figure_canvas = FigureCanvasTkAgg(fig, master=self.root)
-        figure_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        tk_widget = figure_canvas.get_tk_widget()
+        tk_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
         self.figure_canvas = figure_canvas
         return fig
 
